@@ -1,0 +1,19 @@
+language: cpp
+
+compiler:
+  - clang
+  - gcc
+
+os:
+  - linux
+
+addons:
+  apt:
+    packages:
+      - google-mock
+      - ninja-build
+
+install:
+  - pyenv local 3.6 && pip3 install meson
+
+script: ./build/travis.sh
