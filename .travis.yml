@@ -1,5 +1,7 @@
 language: cpp
 
+dist: xenial
+
 compiler:
   - clang
   - gcc
@@ -11,9 +13,13 @@ addons:
   apt:
     packages:
       - google-mock
+      - libgtest-dev
       - ninja-build
 
 install:
   - pyenv local 3.6 && pip3 install meson
 
 script: ./build/travis.sh
+
+after_failure:
+  - cat out/meson-logs/meson-log.txt

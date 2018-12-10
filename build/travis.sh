@@ -4,8 +4,8 @@ export PS4="☢"
 
 set -ex
 
-OUT=out
+OUT_DIR=out
 
-meson $OUT
-ninja -C $OUT
-$OUT/tests/unit_tests --test-launcher-bot-mode
+meson --debug $OUT_DIR
+ninja -C $OUT_DIR
+$OUT_DIR/tests/unit_tests --test-launcher-bot-mode
