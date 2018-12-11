@@ -1,7 +1,10 @@
 core_lib = library('core',
   [
+    'assert.hh',
     'backtrace.cc',
     'backtrace.hh',
+    'log.cc',
+    'log.hh',
     'types.hh',
   ],
 

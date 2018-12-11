@@ -5,7 +5,11 @@ gtest_deps = [
 
 executable('unit_tests',
   [
+    '../src/assert_debug_test.cc',
+    '../src/assert_release_test.cc',
     '../src/backtrace_test.cc',
+    '../src/log_debug_test.cc',
+    '../src/log_release_test.cc',
     'unit_tests.cc',
   ],
 

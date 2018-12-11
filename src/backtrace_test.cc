@@ -1,6 +1,6 @@
 #include "backtrace.hh"
 
-#include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
 namespace core {
 
@@ -23,10 +23,9 @@ const List<String> expected_stack = {
 
 }  // namespace
 
-using ::testing::StartsWith;
-
 TEST(BacktraceTest, GetStackTrace) {
   // FIXME: check somehow the frames contents.
+  //        May use gmock's `StartsWith()`
   for (size_t depth = 0; depth <= expected_stack.size(); ++depth) {
     auto stack = GetStackTrace(depth);
     ASSERT_EQ(depth, stack.size());
