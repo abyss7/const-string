@@ -1,0 +1,13 @@
+target(library, "core") {
+  sources = [
+    "backtrace.cc",
+    "log.cc",
+    "types.hh",
+  ]
+
+  public = [
+    "assert.hh",
+    "backtrace.hh",
+    "log.hh",
+  ]
+}

@@ -8,18 +8,12 @@ compiler:
 
 os:
   - linux
-
-addons:
-  apt:
-    packages:
-      - google-mock
-      - libgtest-dev
-      - ninja-build
+  - darwin
 
 install:
-  - pyenv local 3.6 && pip3 install meson
+  - curl -JLO https://chrome-infra-packages.appspot.com/dl/gn/gn/linux-amd64/+/T09VSJ7uJnfkIHG3v7o0oYjo0nWLwvFnR05-I9iRU-EC
+  - unzip -q gn-linux-amd64.zip
+  - curl -JLO https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-linux.zip
+  - unzip -q ninja-linux.zip
 
 script: ./build/travis.sh
-
-after_failure:
-  - cat out/meson-logs/meson-log.txt

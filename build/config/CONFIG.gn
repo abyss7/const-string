@@ -1,0 +1,101 @@
+# =============================================================================
+# Arguments
+
+declare_args() {
+  build_type = "debug"
+  compiler = "clang"
+  library = "shared_library"
+  version = exec_script("//build/version.py", [], "string")
+}
+
+assert(build_type == "debug" || build_type == "release",
+       "unknown build_type specified: ${build_type}")
+
+assert(compiler == "clang",
+       "unknown compiler specified: ${compiler}")
+
+assert(library == "shared_library" || library == "static_library",
+       "unknown library specified: ${library}")
+
+# =============================================================================
+# Configurations and dependencies
+
+default_configs = [
+  "//build/config:base",
+  "//build/config/${host_os}:threads",
+  "//build/config:${build_type}",
+  "//build/config:${library}",
+]
+default_deps = []
+
+set_defaults("executable") {
+  configs = default_configs
+  deps = default_deps
+}
+
+set_defaults("shared_library") {
+  configs = default_configs
+  deps = default_deps
+}
+
+set_defaults("source_set") {
+  configs = default_configs
+  deps = default_deps
+}
+
+set_defaults("static_library") {
+  configs = default_configs
+  deps = default_deps
+}
+
+# =============================================================================
+# Source-file filters per platform
+
+linux_sources_filters = [
+  "*_linux.cc",
+  "*_linux.hh",
+  "*_linux_test.cc",
+  "*_linux_test.hh",
+]
+
+mac_sources_filters = [
+  "*_mac.cc",
+  "*_mac.hh",
+  "*_mac_test.cc",
+  "*_mac_test.hh",
+]
+
+posix_sources_filters = [
+  "*_posix.cc",
+  "*_posix.hh",
+  "*_posix_test.cc",
+  "*_posix_test.hh",
+]
+
+win_sources_filters = [
+  "*_win.cc",
+  "*_win.hh",
+  "*_win_test.cc",
+  "*_win_test.hh",
+]
+
+sources_assignment_filter = []
+if (host_os != "mac") {
+  sources_assignment_filter += mac_sources_filters
+}
+if (host_os != "linux") {
+  sources_assignment_filter += linux_sources_filters
+}
+if (host_os != "mac" && host_os != "linux") {
+  sources_assignment_filter += posix_sources_filters
+}
+if (host_os != "win") {
+  sources_assignment_filter += win_sources_filters
+}
+
+set_sources_assignment_filter(sources_assignment_filter)
+
+# =============================================================================
+# Toolchains
+
+set_default_toolchain("//build/config/${host_os}:${compiler}")
