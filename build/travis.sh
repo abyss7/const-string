@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-export PS4="☢"
+export PS4="☢ "
 
 set -ex
 
-OUT_DIR=out
+# gn is extracted into build dir
+export PATH=${PATH}:${TRAVIS_BUILD_DIR}
 
-meson --debug $OUT_DIR
-ninja -C $OUT_DIR
-$OUT_DIR/tests/unit_tests --test-launcher-bot-mode
+build/configure.sh
+ninja -C out
+out/unit_tests --test-launcher-bot-mode

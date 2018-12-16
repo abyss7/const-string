@@ -1,0 +1,15 @@
+executable("unit_tests") {
+  sources = [
+    "unit_tests.cc",
+    "//src/assert_debug_test.cc",
+    "//src/assert_release_test.cc",
+    "//src/backtrace_test.cc",
+    "//src/log_debug_test.cc",
+    "//src/log_release_test.cc",
+  ]
+
+  deps += [
+    "//src:core",
+    "//third_party:googletest",
+  ]
+}

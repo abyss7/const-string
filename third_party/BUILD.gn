@@ -1,0 +1,13 @@
+import("googletest.gni")
+
+config("gtest_public") {
+  include_dirs = googletest_public_includes
+}
+
+source_set("googletest") {
+  sources = googletest_sources
+  public = googletest_public
+
+  public_configs = [ ":gtest_public" ]
+  include_dirs = googletest_includes
+}

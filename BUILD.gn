@@ -1,0 +1,5 @@
+group("tests") {
+  deps = [
+    "//tests:unit_tests",
+  ]
+}

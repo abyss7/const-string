@@ -1,0 +1,15 @@
+googletest_sources = [
+  "googletest/googletest/src/gtest-all.cc",
+]
+
+googletest_public = [
+  "googletest/googletest/include/gtest/gtest.h",
+]
+
+googletest_includes = [
+  "googletest/googletest",
+]
+
+googletest_public_includes = [
+  "googletest/googletest/include",
+]

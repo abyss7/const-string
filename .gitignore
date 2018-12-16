@@ -1,2 +1,5 @@
 # Build directory
 /out/
+
+# Other
+/.cquery-cache/
