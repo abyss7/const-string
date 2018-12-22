@@ -20,11 +20,6 @@ config("debug") {
     "-g",
     "-O0",
   ]
-
-  ldflags = [
-    "-rpath",
-    "\$ORIGIN",
-  ]
 }
 
 config("release") {
@@ -43,5 +38,9 @@ config("shared_library") {
 }
 
 config("static_library") {
+}
 
+config("threads") {
+  cflags = [ "-pthread" ]
+  libs = [ "pthread" ]
 }

@@ -22,9 +22,10 @@ assert(library == "shared_library" || library == "static_library",
 
 default_configs = [
   "//build/config:base",
-  "//build/config/${host_os}:threads",
+  "//build/config:threads",
   "//build/config:${build_type}",
   "//build/config:${library}",
+  "//build/config/${host_os}:base",
 ]
 default_deps = []
 
